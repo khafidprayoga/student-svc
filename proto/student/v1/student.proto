@@ -1,0 +1,17 @@
+syntax = "proto3";
+
+package student.v1;
+option go_package = "github.com/khafidprayoga/gen/student/v1;studentv1";
+
+message CreateStudentRequest{
+  string full_name = 1;
+}
+
+message CreateStudentResponse{
+  string id = 1;
+  string full_name = 2;
+}
+
+service StudentService{
+  rpc CreateStudent(CreateStudentRequest) returns (CreateStudentResponse) {}
+}
