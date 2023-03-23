@@ -1,0 +1,70 @@
+syntax = "proto3";
+
+package student.v2;
+
+import "google/type/datetime.proto";
+option  go_package = "github.com/khafidprayoga/student-svc/v2;studentv2";
+
+enum StudentNationality{
+  STUDENT_NATIONALITY_UNSPECIFIED = 0;
+  STUDENT_NATIONALITY_CITIZEN = 1;
+  STUDENT_NATIONALITY_FOREIGN = 2;
+}
+
+enum GenderType {
+  GENDER_TYPE_UNSPECIFIED = 0;
+  GENDER_TYPE_MALE = 1;
+  GENDER_TYPE_FEMALE = 2;
+  GENDER_TYPE_OTHER = 3;
+}
+
+message Student{
+  string id = 1;
+  string full_name = 2;
+  google.type.DateTime birth_date = 3;
+  GenderType gender = 4;
+  string address = 5;
+  repeated string hobbies = 6;
+  StudentNationality nationality = 7;
+}
+
+message CreateStudentRequest{
+  string full_name = 2;
+  string birth_date = 3;
+  GenderType gender = 4;
+  string address = 5;
+  repeated string hobbies = 6;
+  StudentNationality nationality = 7;
+}
+
+message CreateStudentResponse{
+  Student students = 1;
+}
+
+message GetDetailStudentRequest {
+  string student_id = 1;
+}
+
+message GetDetailStudentResponse{
+  Student students = 1;
+}
+
+message GetListStudentRequest{}
+message GetListStudentResponse{
+  repeated Student students = 1;
+}
+
+message DeleteStudentRequest {
+  string student_id = 1;
+}
+
+message DeleteStudentResponse{
+  string message = 1;
+}
+
+service StudentService{
+  rpc CreateStudent(CreateStudentRequest) returns (CreateStudentResponse);
+  rpc GetDetailStudent(GetDetailStudentRequest) returns (GetDetailStudentResponse);
+  rpc DeleteStudent(DeleteStudentRequest) returns (DeleteStudentResponse);
+  rpc GetListStudent(GetListStudentRequest) returns (GetListStudentResponse);
+}

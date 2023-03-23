@@ -6,7 +6,7 @@ const student = {
   address: 'Jalan Jend. Sudirman No. 321',
   hobbies: ['football', 'fishing'],
   email: 'janedoe@example.com',
-  nationality: 'ID', // nationality => ISO 3166-1 alpha-2
+  nationality: 'foreign', // citizen and foreign
 };
 
 console.log(JSON.stringify(student, null, '  '));
