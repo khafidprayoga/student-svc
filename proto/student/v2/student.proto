@@ -2,7 +2,7 @@ syntax = "proto3";
 
 package student.v2;
 
-import "google/type/datetime.proto";
+import "google/protobuf/timestamp.proto";
 option  go_package = "github.com/khafidprayoga/student-svc/v2;studentv2";
 
 enum StudentNationality{
@@ -21,7 +21,7 @@ enum GenderType {
 message Student{
   string id = 1;
   string full_name = 2;
-  google.type.DateTime birth_date = 3;
+  google.protobuf.Timestamp birth_date = 3;
   GenderType gender = 4;
   string address = 5;
   repeated string hobbies = 6;
@@ -30,7 +30,7 @@ message Student{
 
 message CreateStudentRequest{
   string full_name = 2;
-  string birth_date = 3;
+  google.protobuf.Timestamp  birth_date = 3;
   GenderType gender = 4;
   string address = 5;
   repeated string hobbies = 6;
