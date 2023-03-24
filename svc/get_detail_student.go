@@ -8,9 +8,10 @@ import (
 	"google.golang.org/protobuf/types/known/timestamppb"
 )
 
-func (s *StudentServiceServerImpl) GetDetailStudent(
+func (server *StudentServiceServerImpl) GetDetailStudent(
 	ctx context.Context, req *studentv2.GetDetailStudentRequest,
 ) (
+
 	res *studentv2.GetDetailStudentResponse, err error) {
 	res = &studentv2.GetDetailStudentResponse{
 		Students: &studentv2.Student{

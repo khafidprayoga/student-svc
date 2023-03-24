@@ -4,7 +4,10 @@ import (
 	"fmt"
 	"net"
 
-	studentv2 "github.com/khafidprayoga/student-svc/gen/student/v2"
+	grpc_zap "github.com/grpc-ecosystem/go-grpc-middleware/logging/zap"
+	grpc_recovery "github.com/grpc-ecosystem/go-grpc-middleware/recovery"
+	"github.com/khafidprayoga/student-svc/cmd/config"
+	"github.com/khafidprayoga/student-svc/gen/student/v2"
 	"github.com/khafidprayoga/student-svc/svc"
 	"google.golang.org/grpc"
 	"google.golang.org/grpc/reflection"
@@ -13,14 +16,26 @@ import (
 const address = ":5080"
 
 func main() {
+	log := config.GetZapLogger()
 	listen, err := net.Listen("tcp", address)
 	if err != nil {
 		panic(err)
 	}
 
-	fmt.Printf("student services running on %v\n", address)
-	handler := &svc.StudentServiceServerImpl{}
-	s := grpc.NewServer()
+	bootMsg := fmt.Sprintf("student services running on %v", address)
+	log.Info(bootMsg)
+
+	handler := &svc.StudentServiceServerImpl{
+		Log: log,
+	}
+
+	s := grpc.NewServer(
+		grpc.ChainUnaryInterceptor(
+			grpc_zap.UnaryServerInterceptor(log),
+			grpc_recovery.UnaryServerInterceptor(),
+		),
+	)
+
 	studentv2.RegisterStudentServiceServer(s, handler)
 	reflection.Register(s)
 
