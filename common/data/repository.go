@@ -4,6 +4,7 @@ import (
 	"errors"
 	"fmt"
 	"time"
+	_ "time/tzdata"
 
 	"github.com/google/uuid"
 	"github.com/khafidprayoga/student-svc/common/model"
