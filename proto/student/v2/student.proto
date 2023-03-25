@@ -52,6 +52,8 @@ message GetDetailStudentResponse{
   repeated string hobbies = 6;
   int32 nationality = 7;
   string email = 8;
+  google.protobuf.Timestamp created_at = 9;
+  google.protobuf.Timestamp updated_at = 10;
 }
 
 message GetListStudentRequest{}

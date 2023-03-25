@@ -31,6 +31,8 @@ func (server *StudentServiceServerImpl) GetDetailStudent(
 		Hobbies:     data.Hobbies,
 		Nationality: data.Nationality,
 		Email:       data.Email,
+		CreatedAt:   timestamppb.New(*data.CreatedAt),
+		UpdatedAt:   timestamppb.New(*data.UpdatedAt),
 	}
 	return res, nil
 }
