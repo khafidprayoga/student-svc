@@ -25,6 +25,7 @@ message CreateStudentRequest{
   string address = 5;
   repeated string hobbies = 6;
   StudentNationality nationality = 7;
+  string email = 8;
 }
 
 message CreateStudentResponse{
@@ -35,6 +36,7 @@ message CreateStudentResponse{
   string address = 5;
   repeated string hobbies = 6;
   int32 nationality = 7;
+  string email = 8;
 }
 
 message GetDetailStudentRequest {
@@ -49,6 +51,7 @@ message GetDetailStudentResponse{
   string address = 5;
   repeated string hobbies = 6;
   int32 nationality = 7;
+  string email = 8;
 }
 
 message GetListStudentRequest{}
