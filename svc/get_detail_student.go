@@ -2,8 +2,8 @@ package svc
 
 import (
 	"context"
+	"errors"
 
-	"github.com/google/uuid"
 	"github.com/khafidprayoga/student-svc/gen/student/v2"
 	"google.golang.org/protobuf/types/known/timestamppb"
 )
@@ -11,18 +11,26 @@ import (
 func (server *StudentServiceServerImpl) GetDetailStudent(
 	ctx context.Context, req *studentv2.GetDetailStudentRequest,
 ) (
-
 	res *studentv2.GetDetailStudentResponse, err error) {
+	studentId := req.StudentId
+	if studentId == "" {
+		return nil, errors.New("student id must be not empty string")
+	}
+
+	data, err := server.Data.GetDetailStudent(studentId)
+	if err != nil {
+		return nil, err
+	}
+
 	res = &studentv2.GetDetailStudentResponse{
-		Students: &studentv2.Student{
-			Id:          uuid.NewString(),
-			FullName:    "Akbar Maulana",
-			BirthDate:   timestamppb.Now(),
-			Gender:      studentv2.GenderType_GENDER_TYPE_MALE,
-			Address:     "Jl. Soekarno Hatta",
-			Hobbies:     []string{"Fishing", "Listening to the music"},
-			Nationality: studentv2.StudentNationality_STUDENT_NATIONALITY_CITIZEN,
-		},
+		Id:          data.Id,
+		FullName:    data.FullName,
+		BirthDate:   timestamppb.New(*data.BirthDate),
+		Gender:      data.Gender,
+		Address:     data.Address,
+		Hobbies:     data.Hobbies,
+		Nationality: data.Nationality,
+		Email:       data.Email,
 	}
 	return res, nil
 }

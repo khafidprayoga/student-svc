@@ -7,6 +7,7 @@ import (
 	grpc_zap "github.com/grpc-ecosystem/go-grpc-middleware/logging/zap"
 	grpc_recovery "github.com/grpc-ecosystem/go-grpc-middleware/recovery"
 	"github.com/khafidprayoga/student-svc/cmd/config"
+	"github.com/khafidprayoga/student-svc/common/data"
 	"github.com/khafidprayoga/student-svc/gen/student/v2"
 	"github.com/khafidprayoga/student-svc/svc"
 	"google.golang.org/grpc"
@@ -16,7 +17,11 @@ import (
 const address = ":5080"
 
 func main() {
-	log := config.GetZapLogger()
+	var (
+		log       = config.GetZapLogger()
+		studentDB = data.New()
+	)
+
 	listen, err := net.Listen("tcp", address)
 	if err != nil {
 		panic(err)
@@ -26,7 +31,8 @@ func main() {
 	log.Info(bootMsg)
 
 	handler := &svc.StudentServiceServerImpl{
-		Log: log,
+		Log:  log,
+		Data: studentDB,
 	}
 
 	s := grpc.NewServer(
