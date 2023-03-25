@@ -1,0 +1,6 @@
+linters-settings:
+  dupl:
+    skip: true
+  gosimple:
+    go: "1.19"
+    checks: ["all"]
