@@ -18,16 +18,6 @@ enum GenderType {
   GENDER_TYPE_OTHER = 3;
 }
 
-message Student{
-  string id = 1;
-  string full_name = 2;
-  google.protobuf.Timestamp birth_date = 3;
-  GenderType gender = 4;
-  string address = 5;
-  repeated string hobbies = 6;
-  StudentNationality nationality = 7;
-}
-
 message CreateStudentRequest{
   string full_name = 2;
   google.protobuf.Timestamp  birth_date = 3;
@@ -38,7 +28,13 @@ message CreateStudentRequest{
 }
 
 message CreateStudentResponse{
-  Student students = 1;
+  string id = 1;
+  string full_name = 2;
+  google.protobuf.Timestamp birth_date = 3;
+  int32 gender = 4;
+  string address = 5;
+  repeated string hobbies = 6;
+  int32 nationality = 7;
 }
 
 message GetDetailStudentRequest {
@@ -46,12 +42,18 @@ message GetDetailStudentRequest {
 }
 
 message GetDetailStudentResponse{
-  Student students = 1;
+  string id = 1;
+  string full_name = 2;
+  google.protobuf.Timestamp birth_date = 3;
+  int32 gender = 4;
+  string address = 5;
+  repeated string hobbies = 6;
+  int32 nationality = 7;
 }
 
 message GetListStudentRequest{}
 message GetListStudentResponse{
-  repeated Student students = 1;
+  repeated GetDetailStudentResponse details = 1;
 }
 
 message DeleteStudentRequest {
