@@ -44,7 +44,8 @@ func init() {
 	studentData[student.Id] = student
 }
 
-func (data *StudentDataRepository) CreateStudent(s *model.Student) error {
+func (data *StudentDataRepository) CreateStudent(s *model.Student) (id string, err error) {
+	now := time.Now()
 	preparedData := model.Student{
 		Id:          uuid.NewString(),
 		FullName:    s.FullName,
@@ -52,14 +53,17 @@ func (data *StudentDataRepository) CreateStudent(s *model.Student) error {
 		Hobbies:     s.Hobbies,
 		BirthDate:   s.BirthDate,
 		Gender:      s.Gender,
+		Email:       s.Email,
 		Nationality: s.Nationality,
+		CreatedAt:   &now,
+		UpdatedAt:   &now,
 	}
 
 	studentData[preparedData.Id] = preparedData
 	if studentData[preparedData.Id].Id == "" {
-		return fmt.Errorf("failed to insert student %v ", s.FullName)
+		return "", fmt.Errorf("failed to insert student %v ", s.FullName)
 	}
-	return nil
+	return preparedData.Id, nil
 }
 
 func (data *StudentDataRepository) GetDetailStudent(
