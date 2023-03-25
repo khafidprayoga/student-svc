@@ -18,6 +18,11 @@ func (server *StudentServiceServerImpl) DeleteStudent(
 		return
 	}
 
+	_, errGetDetail := server.Data.GetDetailStudent(studentId)
+	if errGetDetail != nil {
+		err = errGetDetail
+		return
+	}
 	errDeleteStudent := server.Data.DeleteStudent(studentId)
 	if errDeleteStudent != nil {
 		err = errDeleteStudent
