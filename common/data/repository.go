@@ -7,7 +7,7 @@ import (
 
 	"github.com/google/uuid"
 	"github.com/khafidprayoga/student-svc/common/model"
-	studentv2 "github.com/khafidprayoga/student-svc/gen/student/v2"
+	"github.com/khafidprayoga/student-svc/gen/student/v2"
 )
 
 var studentData = make(map[string]model.Student)

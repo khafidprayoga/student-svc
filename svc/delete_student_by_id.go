@@ -5,7 +5,7 @@ import (
 	"errors"
 	"fmt"
 
-	studentv2 "github.com/khafidprayoga/student-svc/gen/student/v2"
+	"github.com/khafidprayoga/student-svc/gen/student/v2"
 )
 
 func (server *StudentServiceServerImpl) DeleteStudent(

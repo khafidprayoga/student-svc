@@ -3,7 +3,7 @@ package svc
 import (
 	"context"
 
-	studentv2 "github.com/khafidprayoga/student-svc/gen/student/v2"
+	"github.com/khafidprayoga/student-svc/gen/student/v2"
 	"google.golang.org/protobuf/types/known/timestamppb"
 )
 
