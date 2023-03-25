@@ -6,7 +6,7 @@ import (
 
 	grpc_zap "github.com/grpc-ecosystem/go-grpc-middleware/logging/zap"
 	grpc_recovery "github.com/grpc-ecosystem/go-grpc-middleware/recovery"
-	"github.com/khafidprayoga/student-svc/cmd/config"
+	"github.com/khafidprayoga/student-svc/common/config"
 	"github.com/khafidprayoga/student-svc/common/data"
 	"github.com/khafidprayoga/student-svc/gen/student/v2"
 	"github.com/khafidprayoga/student-svc/svc"
