@@ -13,3 +13,5 @@ plugins:
     out: gen
     opt:
       - paths=source_relative
+  - plugin: buf.build/community/timostamm-protobuf-ts
+    out: client/gen
