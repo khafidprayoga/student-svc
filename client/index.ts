@@ -13,9 +13,10 @@ const client = new StudentServiceClient(transport);
 const [, , studentId] = process.argv;
 (async () => {
   try {
-    const { response: detail } = await client.getDetailStudent({
-      studentId,
+    const data = await client.getDetailStudent({
+      studentId: studentId || 'seed',
     });
+    let { response: detail } = data;
     var pronouns = '';
 
     switch (detail.gender) {
@@ -40,6 +41,7 @@ const [, , studentId] = process.argv;
     if (detail.updatedAt) {
       updated_at = Timestamp.toDate(detail.updatedAt);
     }
+
     console.log(`
     Hello, i am ${detail.fullName},
     pronouns ${pronouns},
