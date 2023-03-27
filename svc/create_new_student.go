@@ -5,7 +5,7 @@ import (
 	"regexp"
 
 	validation "github.com/go-ozzo/ozzo-validation"
-	"github.com/khafidprayoga/student-svc/common/const"
+	"github.com/khafidprayoga/student-svc/common/constant"
 	"github.com/khafidprayoga/student-svc/common/model"
 	"github.com/khafidprayoga/student-svc/gen/student/v2"
 	"go.uber.org/zap"
@@ -20,7 +20,7 @@ func (server *StudentServiceServerImpl) CreateStudent(
 			validation.Length(5, 32),
 		),
 		validation.Field(&req.Email, validation.Required, validation.Match(
-			regexp.MustCompile(_const.EmailPattern),
+			regexp.MustCompile(constant.EmailPattern),
 		)),
 		validation.Field(&req.Address, validation.Required),
 	)

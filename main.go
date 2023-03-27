@@ -7,6 +7,7 @@ import (
 	"github.com/grpc-ecosystem/go-grpc-middleware/logging/zap"
 	"github.com/grpc-ecosystem/go-grpc-middleware/recovery"
 	"github.com/khafidprayoga/student-svc/common/config"
+	"github.com/khafidprayoga/student-svc/common/constant"
 	"github.com/khafidprayoga/student-svc/common/data"
 	"github.com/khafidprayoga/student-svc/gen/student/v2"
 	"github.com/khafidprayoga/student-svc/svc"
@@ -14,20 +15,22 @@ import (
 	"google.golang.org/grpc/reflection"
 )
 
-const address = ":5080"
-
 func main() {
 	var (
 		log       = config.GetZapLogger()
 		studentDB = data.New()
 	)
 
-	listen, err := net.Listen("tcp", address)
+	listen, err := net.Listen("tcp", constant.GRPCAddress)
 	if err != nil {
 		panic(err)
 	}
 
-	bootMsg := fmt.Sprintf("student services running on %v", address)
+	bootMsg := fmt.Sprintf(
+		"student services running on %v",
+		constant.GRPCAddress,
+	)
+
 	log.Info(bootMsg)
 
 	handler := &svc.StudentServiceServerImpl{
