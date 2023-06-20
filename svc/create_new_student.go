@@ -4,10 +4,12 @@ import (
 	"context"
 	"regexp"
 
+	"buf.build/gen/go/khafidprayoga/student-svc/protocolbuffers/go/student/v2"
 	validation "github.com/go-ozzo/ozzo-validation"
+
 	"github.com/khafidprayoga/student-svc/common/constant"
 	"github.com/khafidprayoga/student-svc/common/model"
-	"github.com/khafidprayoga/student-svc/gen/student/v2"
+
 	"go.uber.org/zap"
 )
 
@@ -51,17 +53,13 @@ func (server *StudentServiceServerImpl) CreateStudent(
 	)
 
 	return &studentv2.CreateStudentResponse{
-		Id:        studentId,
-		FullName:  req.FullName,
-		BirthDate: req.GetBirthDate(),
-		Gender: studentv2.GenderType_value[
-			req.GetGender().String(),
-		],
-		Address: req.GetAddress(),
-		Hobbies: req.GetHobbies(),
-		Nationality: studentv2.StudentNationality_value[
-			req.GetNationality().String(),
-		],
-		Email: req.GetEmail(),
+		Id:          studentId,
+		FullName:    req.FullName,
+		BirthDate:   req.GetBirthDate(),
+		Gender:      studentv2.GenderType_value[req.GetGender().String()],
+		Address:     req.GetAddress(),
+		Hobbies:     req.GetHobbies(),
+		Nationality: studentv2.StudentNationality_value[req.GetNationality().String()],
+		Email:       req.GetEmail(),
 	}, nil
 }

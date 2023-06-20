@@ -6,9 +6,10 @@ import (
 	"time"
 	_ "time/tzdata"
 
+	"buf.build/gen/go/khafidprayoga/student-svc/protocolbuffers/go/student/v2"
 	"github.com/google/uuid"
+
 	"github.com/khafidprayoga/student-svc/common/model"
-	"github.com/khafidprayoga/student-svc/gen/student/v2"
 )
 
 var studentData = make(map[string]model.Student)

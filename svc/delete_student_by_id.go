@@ -5,7 +5,7 @@ import (
 	"errors"
 	"fmt"
 
-	"github.com/khafidprayoga/student-svc/gen/student/v2"
+	"buf.build/gen/go/khafidprayoga/student-svc/protocolbuffers/go/student/v2"
 )
 
 func (server *StudentServiceServerImpl) DeleteStudent(

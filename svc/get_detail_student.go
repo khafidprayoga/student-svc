@@ -4,7 +4,8 @@ import (
 	"context"
 	"errors"
 
-	"github.com/khafidprayoga/student-svc/gen/student/v2"
+	"buf.build/gen/go/khafidprayoga/student-svc/protocolbuffers/go/student/v2"
+
 	"google.golang.org/protobuf/types/known/timestamppb"
 )
 

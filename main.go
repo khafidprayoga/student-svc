@@ -4,15 +4,18 @@ import (
 	"fmt"
 	"net"
 
+	"buf.build/gen/go/khafidprayoga/student-svc/grpc/go/student/v2/studentv2grpc"
 	"github.com/grpc-ecosystem/go-grpc-middleware/logging/zap"
 	"github.com/grpc-ecosystem/go-grpc-middleware/recovery"
+
 	"github.com/khafidprayoga/student-svc/common/config"
 	"github.com/khafidprayoga/student-svc/common/constant"
 	"github.com/khafidprayoga/student-svc/common/data"
-	"github.com/khafidprayoga/student-svc/gen/student/v2"
-	"github.com/khafidprayoga/student-svc/svc"
+
 	"google.golang.org/grpc"
 	"google.golang.org/grpc/reflection"
+
+	"github.com/khafidprayoga/student-svc/svc"
 )
 
 func main() {
@@ -45,7 +48,7 @@ func main() {
 		),
 	)
 
-	studentv2.RegisterStudentServiceServer(s, handler)
+	studentv2grpc.RegisterStudentServiceServer(s, handler)
 	reflection.Register(s)
 
 	if e := s.Serve(listen); e != nil {

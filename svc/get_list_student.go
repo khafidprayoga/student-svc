@@ -3,13 +3,13 @@ package svc
 import (
 	"context"
 
-	"github.com/khafidprayoga/student-svc/gen/student/v2"
+	"buf.build/gen/go/khafidprayoga/student-svc/protocolbuffers/go/student/v2"
 	"google.golang.org/protobuf/types/known/timestamppb"
 )
 
 func (server *StudentServiceServerImpl) GetListStudent(
 	ctx context.Context, req *studentv2.GetListStudentRequest,
-) (res *studentv2.GetListStudentResponse, err error, ) {
+) (res *studentv2.GetListStudentResponse, err error) {
 	var (
 		finalData []*studentv2.GetDetailStudentResponse
 	)
